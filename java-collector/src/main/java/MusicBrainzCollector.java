@@ -161,8 +161,4 @@ public class MusicBrainzCollector {
     private static String csv(String value) {
         return "\"" + value.replace("\"", "\"\"") + "\"";
     }
-
-
-
-
 }

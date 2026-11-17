@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class MoodScorer {
 
-    // categorizes mood keywords
+    // categorizes mood keywords very generally
     public static Map<String, Integer> analyzeMood(String description) {
 
         Map<String, Integer> moodScores = new HashMap<>();

@@ -1,0 +1,61 @@
+<div class="music-page">
+  <header class="music-header">
+    <h1>Music Recommender</h1>
+    <p>Find your next favorite song.</p>
+  </header>
+
+  <main class="music-content">
+    <%= form_with url: music_search_path,
+                  method: :get,
+                  local: true,
+                  class: "music-search-form" do |form| %>
+
+      <span class="search-icon">⌕</span>
+
+      <%= form.search_field :q,
+          value: @query,
+          placeholder: "Search for an artist, song, or mood...",
+          class: "music-search-input",
+          aria: { label: "Search music" } %>
+
+      <%= form.submit "Search", class: "music-search-button" %>
+    <% end %>
+
+    <% if @query.present? %>
+      <section class="recommendations">
+        <div class="recommendations-heading">
+          <h2>Recommended for you</h2>
+          <p>Results inspired by "<%= @query %>"</p>
+        </div>
+
+        <% if @recommendations.any? %>
+          <div class="song-list">
+            <% @recommendations.each_with_index do |song, index| %>
+              <article class="song-card">
+                <div class="song-number">
+                  <%= index + 1 %>
+                </div>
+
+                <div class="song-icon">
+                  ♪
+                </div>
+
+                <div class="song-info">
+                  <h3><%= song[:title] %></h3>
+                  <p><%= song[:artist] %></p>
+                </div>
+
+                <span class="song-genre">
+                  <%= song[:genre] %>
+                </span>
+              </article>
+            <% end %>
+          </div>
+        <% else %>
+          <p class="empty-results">No recommendations found.</p>
+        <% end %>
+      </section>
+    <% else %>
+    <% end %>
+  </main>
+</div>
